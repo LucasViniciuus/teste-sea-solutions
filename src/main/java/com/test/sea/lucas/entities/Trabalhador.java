@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Trabalhador {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique = true)
     private String nome;
