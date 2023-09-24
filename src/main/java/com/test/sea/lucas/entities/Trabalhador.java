@@ -1,5 +1,7 @@
 package com.test.sea.lucas.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Trabalhador {
     private String cpf;
     @ManyToOne
     @JoinColumn(name = "trabalhador_id")
+    @JsonBackReference
     private Cargo cargo;
 
     @ManyToOne

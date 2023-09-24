@@ -1,5 +1,7 @@
 package com.test.sea.lucas.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ public class Setor {
     private Long id;
     private String nome;
     @OneToMany(mappedBy = "setor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Cargo> cargo;
 
     public Long getId() {

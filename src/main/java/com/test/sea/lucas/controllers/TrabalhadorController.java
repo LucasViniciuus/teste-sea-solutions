@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TrabalhadorController {
     @Autowired
     TrabalhadorService trabalhadorSvc;
+
     @PostMapping
     @ApiOperation(value = "Responsável por criar o trabalhador")
     public ResponseEntity<?> criarTrabalhador(@RequestBody Trabalhador novoTrabalhador) {

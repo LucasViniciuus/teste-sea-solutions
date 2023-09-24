@@ -1,6 +1,7 @@
 package com.test.sea.lucas.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +14,7 @@ public class Cargo {
     private String nome;
     @OneToMany
     @JoinColumn(name = "trabalhador_id")
+    @JsonManagedReference
     private List<Trabalhador> trabalhador;
     @ManyToOne
     @JoinColumn(name = "setor_id")
