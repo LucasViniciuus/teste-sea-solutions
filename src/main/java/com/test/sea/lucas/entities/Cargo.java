@@ -1,5 +1,7 @@
 package com.test.sea.lucas.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Cargo {
     private List<Trabalhador> trabalhador;
     @ManyToOne
     @JoinColumn(name = "setor_id")
+    @JsonBackReference
     private Setor setor;
 
     public Long getId() {

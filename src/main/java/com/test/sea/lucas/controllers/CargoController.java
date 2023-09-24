@@ -3,6 +3,7 @@ package com.test.sea.lucas.controllers;
 import com.test.sea.lucas.entities.Cargo;
 import com.test.sea.lucas.exceptions.CargoComMesmoNomeException;
 import com.test.sea.lucas.services.CargoService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class CargoController {
     private CargoService cargoSvc;
 
     @PostMapping
+    @ApiOperation(value = "Responsável por criar o cargo.")
     public ResponseEntity<?> criarCargo(@RequestBody Cargo novoCargo) {
         try {
             Cargo cargo = cargoSvc.criarCargo(novoCargo);

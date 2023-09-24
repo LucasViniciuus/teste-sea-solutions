@@ -2,9 +2,7 @@ package com.test.sea.lucas.services;
 
 import com.test.sea.lucas.entities.Cargo;
 import com.test.sea.lucas.entities.Setor;
-import com.test.sea.lucas.exceptions.CargoIdSemCorrespondencia;
 import com.test.sea.lucas.exceptions.SetorComMesmoNomeException;
-import com.test.sea.lucas.exceptions.SetorIdSemCorrespondencia;
 import com.test.sea.lucas.repositories.CargoRepository;
 import com.test.sea.lucas.repositories.SetorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,22 +26,18 @@ public class SetorService {
         }
         return setorRepo.save(setor);
     }
-    public Setor atualizarSetor(Long id, Setor setorAtualizado) throws SetorIdSemCorrespondencia, CargoIdSemCorrespondencia {
-        Setor setorById = setorRepo.findSetorById(id);
-            if(setorById != null){
-                setorById.setNome(setorAtualizado.getNome());
-            }
-        List<Cargo> cargosAtualizados = setorAtualizado.getCargo();
-        if (cargosAtualizados != null) {
-            for (Cargo cargoAtualizado : cargosAtualizados) {
-                Optional<Cargo> cargoPersistido = cargoRepo.findById(cargoAtualizado.getId());
-                if (cargoPersistido.isPresent()) {
-                    setorById.getCargo().add(cargoPersistido.get());
-                } else {
-                }
-            }
+    public Setor encontrarSetorPorId(Long id) {
+        return setorRepo.findById(id).orElse(null);
+    }
+    public Setor salvarSetor(Setor setor) {
+        try {
+        return setorRepo.save(setor);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
-        return setorRepo.save(setorById);
+    }
+    public Setor buscaSetorId(Long id){
+        return setorRepo.findSetorById(id);
     }
 }
 

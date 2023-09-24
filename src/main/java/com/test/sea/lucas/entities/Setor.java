@@ -1,5 +1,7 @@
 package com.test.sea.lucas.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,8 +11,7 @@ public class Setor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @OneToMany
-    @JoinColumn(name = "cargo_id")
+    @OneToMany(mappedBy = "setor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cargo> cargo;
 
     public Long getId() {
